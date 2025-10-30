@@ -39,4 +39,3 @@ names: {class_names}
     with open(yaml_file, "w") as f:
         f.write(yaml_content)
     return yaml_file
-
