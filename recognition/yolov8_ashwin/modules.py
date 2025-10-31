@@ -35,9 +35,11 @@
 from ultralytics import YOLO
 
 class ISICDetector:
-    def __init__(self, model_path="yolov8n.pt"):
-        # YOLO will auto-download the correct version safely
-        self.model = YOLO(model_path)
+    def __init__(self, model_path=None):
+        if model_path is None:
+            self.model = YOLO("yolov8n.pt")  # auto-download safe
+        else:
+            self.model = YOLO(model_path)
 
     def train(self, data_yaml, epochs=5, imgsz=640, batch=16):
         self.model.train(data=data_yaml, epochs=epochs, imgsz=imgsz, batch=batch)
@@ -47,3 +49,4 @@ class ISICDetector:
         if save:
             results.save()
         return results
+
