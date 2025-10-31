@@ -1,18 +1,20 @@
+import json
+
 def get_data_yaml(
     train_path="/content/PatternRecognition/images/train",
     val_path="/content/PatternRecognition/images/val",
-    num_classes=3,
+    num_classes=4,
     class_names=None,
 ):
     if class_names is None:
-        class_names = ["pigment_network", "negative_network", "milia_like_cyst"]
+        class_names = ["pigment_network", "negative_network", "milia_like_cyst", "streaks"]
 
     yaml_content = f"""
 train: {train_path}
 val: {val_path}
 
 nc: {num_classes}
-names: {class_names}
+names: {json.dumps(class_names)}
 """
     yaml_file = "/content/PatternRecognition/isic_data.yaml"
     with open(yaml_file, "w") as f:

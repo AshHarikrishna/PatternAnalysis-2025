@@ -4,13 +4,13 @@ import json
 import numpy as np
 
 # Use Colab-friendly paths
-ANNOTATIONS_FOLDER = "/content/PatternRecognition/ISIC-2017_Training_Part2_GroundTruth"
+ANNOTATIONS_FOLDER = "/content/PatternRecognition/ISIC-2017_Training_Part2_GroundTruth/ISIC-2017_Training_Part2_GroundTruth"
 LABELS_FOLDER = "/content/PatternRecognition/labels"
 OUTPUT_FILE = "binary_labels.npy"
 
 os.makedirs(LABELS_FOLDER, exist_ok=True)
 
-label_keys = ["pigment_network", "negative_network", "milia_like_cyst"]
+label_keys = ["pigment_network", "negative_network", "milia_like_cyst", "streaks"]
 
 all_labels = []
 
