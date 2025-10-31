@@ -24,5 +24,7 @@ data_yaml = get_data_yaml(
     class_names=["pigment_network", "negative_network", "milia_like_cyst", "streaks"]
 )
 
-detector = ISICDetector()  # automatically downloads YOLOv8n
+# detector = ISICDetector()  # automatically downloads YOLOv8n
+
+detector = ISICDetector(model_path="yolov8n.pt")
 detector.train(data_yaml, epochs=50, imgsz=640, batch=16)
