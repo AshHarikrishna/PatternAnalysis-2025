@@ -4,7 +4,7 @@ import json
 import numpy as np
 
 # Use Colab-friendly paths
-ANNOTATIONS_FOLDER = "/content/PatternRecognition/ISIC-2017_Training_Part2_GroundTruth/ISIC-2017_Training_Part2_GroundTruth"
+ANNOTATIONS_FOLDER = ANNOTATIONS_FOLDER = "/content/PatternRecognition/ISIC-2017_Training_Part2_GroundTruth/ISIC-2017_Training_Part2_GroundTruth"
 LABELS_FOLDER = "/content/PatternRecognition/labels"
 OUTPUT_FILE = "binary_labels.npy"
 
