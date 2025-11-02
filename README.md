@@ -7,7 +7,8 @@ Chosen Project: Project 5 (Normal Difficulty)
 # 1. Introduction
 
 This project implements an end to end deep learning pipeline for skin lesion detection and classification using a YOLOv8 object detection model. The model is trained on the ISIC 2017 dataset, which contains images and annotations for lesion types. The pipeline aims to detect lesions accurately while maintaining real-time performance. 
- 
+<img width="806" height="709" alt="image" src="https://github.com/user-attachments/assets/eac10fab-cf41-4287-9f3e-fa05b3f87304" />
+
 # 2. Objectives
 
     •	Detect skin lesions from images using bounding boxes.
