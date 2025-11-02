@@ -72,7 +72,7 @@ criterion = nn.CrossEntropyLoss()
 optimizer = torch.optim.Adam(model.parameters(), lr=1e-4)
 
 
-EPOCHS = 10
+EPOCHS = 30
 
 for epoch in range(EPOCHS):
     model.train()
