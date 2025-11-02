@@ -200,15 +200,12 @@ Visual consistency held across different skin tones and lighting conditions.
 Misclassifications mainly occurred on borderline lesions (melanoma vs benign nevus).
 
 # 8. Consolidated Results and Insights
-Phase	Description	Precision	Recall	mAP50	mAP50-95	IoU	F1	Key Takeaways
-1	Baseline YOLOv8n, 150 epochs	0.22	0.58	0.29	0.29	0.28	0.37	Weak class separation, low detail; imbalance issues.
-2	YOLOv8m, 768px input, heavy augmentation	~0.55	~0.68	~0.48	~0.46	~0.60	~0.60	Marked improvement in IoU and recall; better feature learning.
-3	Final tuned model, LR=0.0008, IoU threshold 0.8	0.84	0.79	0.81	0.67	0.82	0.81	Achieved target IoU≥0.8; balanced detection and classification accuracy.
+<img width="634" height="245" alt="image" src="https://github.com/user-attachments/assets/175c73aa-fdc8-4d75-849e-9c04fce6677e" />
+
  
 Classification Stage 
 
 After YOLO detection, lesions were cropped and classified into:
-
 Melanoma, Seborrheic Keratosis, Benign Nevus
 
 Model: ResNet18 pretrained on ImageNet, fine-tuned for 3 classes.
@@ -224,9 +221,7 @@ F1-score	0.85
 Findings:
 
 Using YOLO-cropped images improved class purity and reduced background noise.
-
 Misclassifications mainly occurred between benign nevus and seborrheic keratosis due to similar textures.
-
 Future work: ensemble classifier or lesion texture embeddings.
 
 # 9. Reproducibility
