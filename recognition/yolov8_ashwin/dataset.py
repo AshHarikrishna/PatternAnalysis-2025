@@ -1,5 +1,19 @@
 import json
 
+"""
+    Generates a YOLO YAML file pointing to training and validation image folders
+    and defining the number of classes and their names.
+
+    Args:
+        train_path (str): Path to training images.
+        val_path (str): Path to validation images.
+        num_classes (int): Number of classes.
+        class_names (list or None): list of class names
+
+    Returns:
+        str: path ofcreated YAML file.
+    """
+    
 def get_data_yaml(
     train_path="/content/PatternRecognition/images/train",
     val_path="/content/PatternRecognition/images/val",

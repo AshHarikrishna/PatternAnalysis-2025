@@ -1,16 +1,3 @@
-# from modules import ISICDetector
-
-# # Load trained model
-# detector = ISICDetector(model_path="/content/PatternRecognition/runs/detect/train/weights/last.pt")
-
-# # Example prediction on a test image
-# results = detector.predict(
-#     "/content/PatternRecognition/images/test/ISIC_0015158.jpg",  
-#     save=True
-# )
-
-# results.show()
-
 from modules import ISICDetector
 import os
 
@@ -20,6 +7,10 @@ input_dir = "/content/PatternRecognition/ISIC-2017_Training_Data/ISIC-2017_Train
 output_dir = "/content/PatternRecognition/yolo_detections"
 os.makedirs(output_dir, exist_ok=True)
 
+# Loop through all images in the input director
+# Run prediction on the image
+# save_crop=True: save cropped regions detected by YOLO
+# save_txt=False: don't save YOLO label txt files
 for img_name in os.listdir(input_dir):
     if not img_name.endswith(".jpg"):
         continue

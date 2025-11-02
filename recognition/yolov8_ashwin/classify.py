@@ -7,6 +7,8 @@ from torch import nn
 from torch.utils.data import Dataset, DataLoader, random_split
 from torchvision import models, transforms
 
+
+# Directory containing cropped lesion images (from YOLO detection)
 IMAGES_DIR = "/content/PatternRecognition/yolo_detections"  # Cropped lesion images
 PART3_CSV = "/content/PatternRecognition/ISIC-2017_Training_Part3_GroundTruth.csv"
 
@@ -20,6 +22,8 @@ df.loc[(df["melanoma"] == 0) & (df["seborrheic_keratosis"] == 0), "label"] = "be
 LABEL_MAP = {"melanoma": 0, "seborrheic_keratosis": 1, "benign_nevus": 2}
 
 
+
+# Custom Dataset class for loading lesion images
 class LesionDataset(Dataset):
     def __init__(self, df, transform=None):
         self.df = df
@@ -37,13 +41,14 @@ class LesionDataset(Dataset):
             raise FileNotFoundError(f"Image not found: {img_path}")
         image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 
+        # Apply transformations (resize, normalize, etc.)
         if self.transform:
             image = self.transform(image)
 
         label = LABEL_MAP[row["label"]]
         return image, label
 
-
+# Define transformations for images: resize, convert to tensor, normalize
 transform = transforms.Compose([
     transforms.ToPILImage(),
     transforms.Resize((224, 224)),
@@ -64,6 +69,7 @@ val_loader = DataLoader(val_dataset, batch_size=32, shuffle=False)
 
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+# Load pretrained ResNet18 model and replace the final fully connected layer
 model = models.resnet18(pretrained=True)
 model.fc = nn.Linear(model.fc.in_features, 3)
 model = model.to(device)
@@ -74,6 +80,7 @@ optimizer = torch.optim.Adam(model.parameters(), lr=1e-4)
 
 EPOCHS = 30
 
+# Training loop
 for epoch in range(EPOCHS):
     model.train()
     total_loss = 0
@@ -90,7 +97,7 @@ for epoch in range(EPOCHS):
 
     avg_loss = total_loss / len(train_loader.dataset)
 
-    # Validation
+    # # Validation loop
     model.eval()
     correct = 0
     with torch.no_grad():
@@ -105,4 +112,4 @@ for epoch in range(EPOCHS):
 
 
 torch.save(model.state_dict(), "lesion_classifier_resnet18.pth")
-print("✅ Model saved as lesion_classifier_resnet18.pth")
+print(" Model saved as lesion_classifier_resnet18.pth")

@@ -1,37 +1,3 @@
-# # recognition/modules.py
-# from ultralytics import YOLO
-
-# class ISICDetector:
-#     """
-#     Wrapper for YOLOv8 model for ISIC lesion detection.
-#     """
-
-#     def __init__(self, model_path="yolov8n.pt"):
-#         """
-#         Initialize with pretrained YOLOv8 model.
-#         """
-#         self.model = YOLO(model_path)
-
-#     def train(self, data_yaml, epochs=5, imgsz=640, batch=16):
-#         """
-#         Train the model on the dataset.
-#         """
-#         self.model.train(
-#             data=data_yaml,
-#             epochs=epochs,
-#             imgsz=imgsz,
-#             batch=batch
-#         )
-
-#     def predict(self, image_path, save=False):
-#         """
-#         Run inference on a single image.
-#         """
-#         results = self.model.predict(image_path)
-#         if save:
-#             results.save()
-#         return results
-# modules.py
 from ultralytics import YOLO
 
 class ISICDetector:
@@ -50,7 +16,18 @@ class ISICDetector:
               lrf=0.01, 
               freeze=None):
         """
-        Train the YOLO model with final optimal tuning.
+
+        Train the YOLO model with optimal specified hyperparameters.
+        
+        Args:
+            data_yaml (str): Path to YOLO data YAML file.
+            epochs (int): Number of training epochs.
+            imgsz (int): Image size for training.
+            batch (int): Batch size.
+            augment (bool): Whether to use data augmentation.
+            lr0 (float): Initial learning rate.
+            lrf (float): Final learning rate factor.
+            freeze (list or None): List of layers to freeze during training.
         """
         kwargs = {
             "data": data_yaml,
